@@ -205,7 +205,7 @@ class DraggableMenu extends StatefulWidget {
     this.ui = const ClassicDraggableMenu(),
     this.addStatusListener,
     this.addValueListener,
-    this.animationDuration = const Duration(milliseconds: 320),
+    this.animationDuration = const Duration(milliseconds: 200),
     this.curve = Curves.ease,
     this.closeThreshold = 0.5,
     this.expandThreshold = 1 / 3,
@@ -234,7 +234,9 @@ class DraggableMenu extends StatefulWidget {
   static Future<T?> open<T extends Object?>(
     BuildContext context,
     Widget draggableMenu, {
+    RouteSettings? settings,
     Duration? animationDuration,
+    Duration? reverseAnimationDuration,
     Curve? curve,
     Curve? popCurve,
     bool? barrier,
@@ -244,10 +246,12 @@ class DraggableMenu extends StatefulWidget {
         MenuRoute<T>(
           child: draggableMenu,
           duration: animationDuration,
+          reverseDuration: reverseAnimationDuration,
           curve: curve,
           popCurve: popCurve,
           barrier: barrier,
           barrierColor: barrierColor,
+          settings: settings,
         ),
       );
 
@@ -257,7 +261,9 @@ class DraggableMenu extends StatefulWidget {
   static Future openReplacement(
     BuildContext context,
     Widget draggableMenu, {
+    RouteSettings? settings,
     Duration? animationDuration,
+    Duration? reverseAnimationDuration,
     Curve? curve,
     Curve? popCurve,
     bool? barrier,
@@ -267,10 +273,12 @@ class DraggableMenu extends StatefulWidget {
         MenuRoute(
           child: draggableMenu,
           duration: animationDuration,
+          reverseDuration: reverseAnimationDuration,
           curve: curve,
           popCurve: popCurve,
           barrier: barrier,
           barrierColor: barrierColor,
+          settings: settings,
         ),
       );
 

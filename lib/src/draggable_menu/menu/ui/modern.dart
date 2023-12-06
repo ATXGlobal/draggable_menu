@@ -91,7 +91,7 @@ class _ModernUiState extends State<_ModernUi> with TickerProviderStateMixin {
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: widget.animationDuration ?? const Duration(milliseconds: 320),
+      duration: widget.animationDuration ?? const Duration(milliseconds: 200),
     );
 
     listener() {
