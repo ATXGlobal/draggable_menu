@@ -775,7 +775,7 @@ class _DraggableMenuState extends State<DraggableMenu>
   ///
   /// By default, if the `widget.blockMenuClosing` parameter is `true` it's `true` as well.
   bool get _minimizeBeforeFastDrag =>
-      widget.blockMenuClosing ? true : widget.minimizeBeforeFastDrag;
+      widget.blockMenuClosing || widget.minimizeBeforeFastDrag;
 
   // Status Check Getters
   /// Will the menu minimize itself when it's released
@@ -850,10 +850,10 @@ class _DraggableMenuState extends State<DraggableMenu>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        _notifyStatusListener(DraggableMenuStatus.closing);
-        return true;
+    return PopScope(
+      canPop: !widget.blockMenuClosing,
+      onPopInvoked: (bool isPoping) {
+        if (isPoping) _notifyStatusListener(DraggableMenuStatus.closing);
       },
       child: GestureDetector(
         onVerticalDragStart: (details) =>
